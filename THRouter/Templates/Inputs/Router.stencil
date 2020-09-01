@@ -1,0 +1,321 @@
+//
+//  Router.stencil.swift
+//
+import UIKit
+#if canImport(ObjectMapper)
+import ObjectMapper
+#endif
+
+#if canImport(HandyJSON)
+import HandyJSON
+#endif
+
+{% macro typeName name %}{{ name|replace:"!","" }}{% endmacro %}
+{% macro urlParameterName variable %}{% if variable.annotations.alias %}{{ variable.annotations.alias|camelToSnakeCase }}{% else %}{{ variable.name|camelToSnakeCase }}{% endif %}{% endmacro %}
+{% macro enumCase variables %}{% if variables|annotated:"parameter" %}({% for param in variables|annotated:"parameter" %}{{ param.name }}: {% call typeName param.typeName %}{% if not forloop.last %}, {% endif %}{% endfor %}){% endif %}{% endmacro %}
+{% macro switchCase variables %}{% if variables|annotated:"parameter" %}({% for param in variables|annotated:"parameter" %}{{ param.name }}{% if not forloop.last %}, {% endif %}{% endfor %}){% endif %}{% endmacro %}
+{% macro initCase variables %}{% if variables|annotated:"parameter" %}({% for param in variables|annotated:"parameter" %}{{ param.name }}: {{ param.name }}{% if not forloop.last %}, {% endif %}{% endfor %}){% endif %}{% endmacro %}
+{% macro mapEnum param %}
+                var {{ param.name }}: {% call typeName param.typeName %}
+                let {{ param.name }}Raw: {{ param.type.rawTypeName }}? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Raw = {{ param.name }}Raw,
+                    let {{ param.name }}Enum = {{ param.type.name }}(rawValue: {{ param.name }}Raw) {
+                    {{ param.name }} = {{ param.name }}Enum
+                {% if param.isOptional and not param.isImplicitlyUnwrappedOptional %}
+                }
+                {% else %}
+                } else {
+                    throw RouterError.typeNotMatch
+                }
+                {% endif %}
+{% endmacro %}
+{% macro mapArray param %}
+                var {{ param.name }}: {{ param.typeName }}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp {
+                    {% if param.typeName.name == "[Any]?" %}
+                    {{ param.name }} = RouterParser.parseJSONString(JSONString: {{ param.name }}Temp)
+                    {% else %}
+                    if let {{ param.name }}Array = RouterParser.parseJSONString(JSONString: {{ param.name }}Temp) as? {{ param.typeName }} {
+                        {{ param.name }} = {{ param.name }}Array
+                    }
+                    {% endif %}
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                let {{ param.name }}Temp: String = try parameter.get("{% call urlParameterName param %}")
+                {% if param.typeName.name == "[Any]" %}
+                {{ param.name }} = RouterParser.parseJSONString(JSONString: {{ param.name }}Temp)
+                {% else %}
+                if let {{ param.name }}Array = RouterParser.parseJSONString(JSONString: {{ param.name }}Temp) as? {{ param.typeName }} {
+                    {{ param.name }} = {{ param.name }}Array
+                } else {
+                    throw RouterError.typeNotMatch
+                }
+                {% endif %}
+                {% endif %}
+{% endmacro %}
+{% macro mapArrayModel param %}
+                var {{ param.name }}: {{ param.typeName }}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp {
+                    {{ param.name }} = {{ param.name }}Temp.map([{{ param.typeName.array.elementTypeName }}].self)
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                let {{ param.name }}Temp: String = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Mapped = {{ param.name }}Temp.map([{{ param.typeName.array.elementTypeName }}].self) {
+                    {{ param.name }} = {{ param.name }}Mapped
+                } else {
+                    throw RouterError.typeNotMatch
+                }
+                {% endif %}
+{% endmacro %}
+{% macro mapMapperArrayModel param %}
+                var {{ param.name }}: {{ param.typeName }}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp {
+                    {{ param.name }} = Mapper<{{ param.typeName.array.elementTypeName }}>().mapArray(JSONString: {{ param.name }}Temp)
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                let {{ param.name }}Temp: String = try parameter.get("{% call urlParameterName param %}")
+                let {{ param.name }} = Mapper<{{ param.typeName.array.elementTypeName }}>().mapArray(JSONString: {{ param.name }}Temp)
+                {% endif %}
+{% endmacro %}
+{% macro mapDictionary param %}
+                var {{ param.name }}: {% call typeName param.typeName %}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp {
+                    {% if param.typeName.name == "[String: Any]?" %}
+                    {{ param.name }} = RouterParser.parseJSONStringIntoDictionary(JSONString: {{ param.name }}Temp)
+                    {% else %}
+                    if let {{ param.name }}Dictionary = RouterParser.parseJSONStringIntoDictionary(JSONString: {{ param.name }}Temp) as? {{ param.typeName }} {
+                        {{ param.name }} = {{ param.name }}Dictionary
+                    }
+                    {% endif %}
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                {% if param.typeName.name == "[String: Any]" %}
+                {{ param.name }} = RouterParser.parseJSONStringIntoDictionary(JSONString: {{ param.name }}Temp)
+                {% else %}
+                if let {{ param.name }}Dictionary = RouterParser.parseJSONStringIntoDictionary(JSONString: {{ param.name }}Temp) as? {{ param.typeName }} {
+                    {{ param.name }} = {{ param.name }}Dictionary
+                }
+                {% endif %}
+                {% endif %}
+{% endmacro %}
+{% macro mapModel param %}
+                var {{ param.name }}: {% call typeName param.typeName %}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp {
+                    {{ param.name }} = {{ param.name }}Temp.map({{ param.unwrappedTypeName }}.self)
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                let {% call urlParameterName param %}Temp: String = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Model = {{ param.name }}Temp.map({{ param.unwrappedTypeName }}.self) {
+                    {{ param.name }} = {{ param.name }}Model
+                } else {
+                    throw RouterError.typeNotMatch
+                }
+                {% endif %}
+{% endmacro %}
+{% macro mapMapperModel param %}
+                var {{ param.name }}: {% call typeName param.typeName %}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp {
+                    {{ param.name }} = Mapper<{{ param.unwrappedTypeName }}>().map(JSONString: {{ param.name }}Temp)
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                let {% call urlParameterName param %}Temp: String = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Model = Mapper<{{ param.unwrappedTypeName }}>().map(JSONString: {{ param.name }}Temp) {
+                    {{ param.name }} = {{ param.name }}Model
+                } else {
+                    throw RouterError.typeNotMatch
+                }
+                {% endif %}
+{% endmacro %}
+{% macro mapHandyJSONModel param %}
+                var {{ param.name }}: {% call typeName param.typeName %}
+                {% if param.typeName|hasSuffix:"?" %}
+                let {{ param.name }}Temp: String? = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Temp = {{ param.name }}Temp, let {{ param.name }}Model = {{ param.unwrappedTypeName }}.deserialize(from: {{ param.name }}Temp) {
+                    {{ param.name }} = {{ param.name }}Model
+                } else {
+                    {{ param.name }} = nil
+                }
+                {% else %}
+                let {% call urlParameterName param %}Temp: String = try parameter.get("{% call urlParameterName param %}")
+                if let {{ param.name }}Model = {{ param.unwrappedTypeName }}.deserialize(from: {{ param.name }}Temp) {
+                    {{ param.name }} = {{ param.name }}Model
+                } else {
+                    throw RouterError.typeNotMatch
+                }
+                {% endif %}
+{% endmacro %}
+
+// swiftlint:disable all
+public enum RouterType: String {
+{% for type in types.implementing.Routable %}
+    {% if type.annotations.router %}
+    /// RouterType: {{ type.annotations.name }}
+    case {{ type.annotations.router }} = "/{{ type.annotations.router|camelToSnakeCase }}"
+    {% endif %}
+{% endfor %}
+
+    var name: String {
+        switch self {
+    {% for type in types.implementing.Routable %}
+        {% if type.annotations.router %}
+        case .{{ type.annotations.router }}:
+            {% if type.annotations.name %}
+            return "{{ type.annotations.name }}"
+            {% else %}
+            return ""
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+        }
+    }
+}
+
+{% for type in types.implementing.Routable %}
+{% if type.annotations.router %}
+extension {{ type.name }}: RouterControllerType {
+    var routerType: RouterType { return .{{ type.annotations.router }} }
+}
+{% endif %}
+{% endfor %}
+
+// swiftlint:disable all
+public enum RouterParameter {
+{% for type in types.implementing.Routable %}
+    {% if type.annotations.router %}
+    case {{ type.annotations.router }}{% call enumCase type.variables %}
+    {% endif %}
+{% endfor %}
+
+    init?(urlScheme: String) {
+        guard let url = URL(string: urlScheme) else {
+            return nil
+        }
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.query = nil
+        guard let path = urlComponents?.path else {
+            return nil
+        }
+        guard let type = RouterType(rawValue: path) else {
+            return nil
+        }
+        guard let parameter = RouterParameter(type: type, parameter: url.queryParameters) else {
+            return nil
+        }
+        self = parameter
+    }
+
+    init?(type: RouterType, parameter: [String: Any] = [:]) {
+        do {
+            switch type {
+        {% for type in types.implementing.Routable %}
+            {% if type.annotations.router %}
+            case .{{ type.annotations.router }}:
+                {% if type.variables|annotated:"parameter" %}
+                {% for param in type.variables|annotated:"parameter" %}
+                    {# -----------parameter transform----------- #}
+                    {% if param.type.kind == "enum" %}
+                        {# -----------json to enum----------- #}
+                        {% call mapEnum param %}
+                    {% elif param.isArray %}
+                        {% if param.typeName.array.elementType.based.Codable %}
+                            {# -----------json to array model----------- #}
+                            {% call mapArrayModel param %}
+                        {% else %}
+                            {# -----------json to array----------- #}
+                            {% call mapArray param %}
+                        {% endif %}
+                    {% elif param.isDictionary %}
+                        {# -----------json to dictionary----------- #}
+                        {% call mapDictionary param %}
+                    {% elif param.type.based.Codable %}
+                        {# -----------json to model----------- #}
+                        {% call mapModel param %}
+                    {% elif param.type.based.Mappable %}
+                        {# -----------json to model----------- #}
+                        {% call mapMapperModel param %}
+                    {% elif param.type.based.HandyJSON %}
+                        {# -----------json to model----------- #}
+                        {% call mapHandyJSONModel param %}
+                    {% else %}
+                let {{ param.name }}: {% call typeName param.typeName %} = try parameter.get("{% call urlParameterName param %}")
+                    {% endif %}
+                    {# -----------parameter transform----------- #}
+                {% endfor %}
+                self = .{{ type.annotations.router }}{% call initCase type.variables %}
+                {% else %}
+                self = .{{ type.annotations.router }}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+            }
+        } catch {
+            return nil
+        }
+    }
+
+    var type: RouterType {
+        switch self {
+        {% for type in types.implementing.Routable %}
+        {% if type.annotations.router %}
+        case .{{ type.annotations.router }}:
+            return .{{ type.annotations.router }}
+        {% endif %}
+        {% endfor %}
+        }
+    }
+
+    var parameters: [String: Any] {
+        switch self {
+    {% for type in types.implementing.Routable %}
+        {% if type.annotations.router %}
+        {% if type.variables|annotated:"parameter" %}
+        case let .{{ type.annotations.router }}{% call switchCase type.variables %}:
+            var parameter: [String: Any] = [:]
+            {% for param in type.variables|annotated:"parameter" %}
+            parameter["{% call urlParameterName param %}"] = {{ param.name }}
+            {% endfor %}
+            return parameter
+        {% else %}
+        case .{{ type.annotations.router }}:
+            return [:]
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+        }
+    }
+}
+
+extension RouterType {
+    // Full URL
+    var url: String {
+        return NavigatorMap.scheme + "://" + NavigatorMap.host + rawValue
+    }
+}
+
+public enum RouterError: Error {
+    case typeNotMatch
+}

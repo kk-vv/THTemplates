@@ -1,0 +1,32 @@
+PODS:
+  - HandyJSON (5.0.2)
+  - ObjectMapper (4.2.0)
+  - SKPhotoBrowser (6.1.0)
+  - Sourcery (1.0.0)
+  - URLNavigator (2.3.0)
+
+DEPENDENCIES:
+  - HandyJSON
+  - ObjectMapper
+  - SKPhotoBrowser
+  - Sourcery
+  - URLNavigator
+
+SPEC REPOS:
+  trunk:
+    - HandyJSON
+    - ObjectMapper
+    - SKPhotoBrowser
+    - Sourcery
+    - URLNavigator
+
+SPEC CHECKSUMS:
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+  Sourcery: 928a146ea9b777fa64b0c6ce915c4128b4488cff
+  URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
+
+PODFILE CHECKSUM: 46436a9602c749aa8e5da78222356274b6cd2cbb
+
+COCOAPODS: 1.9.3

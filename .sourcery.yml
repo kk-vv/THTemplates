@@ -1,0 +1,7 @@
+sources:
+  - THRouter/Classes
+  - THRouter/CommonModule
+templates:
+  - THRouter/Templates/Inputs
+output:
+  THRouter/Templates/Outputs

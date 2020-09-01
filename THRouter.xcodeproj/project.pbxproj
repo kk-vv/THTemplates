@@ -3,27 +3,85 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CC192E48655EEBE806E8636 /* Pods_THRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59496FDDBB2FC86C63AF8D5F /* Pods_THRouter.framework */; };
 		C0EDB6A024FCCD200064B15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB69F24FCCD200064B15C /* AppDelegate.swift */; };
 		C0EDB6A224FCCD200064B15C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6A124FCCD200064B15C /* SceneDelegate.swift */; };
-		C0EDB6A424FCCD200064B15C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6A324FCCD200064B15C /* ViewController.swift */; };
+		C0EDB6A424FCCD200064B15C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6A324FCCD200064B15C /* MainTableViewController.swift */; };
 		C0EDB6A724FCCD200064B15C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6A524FCCD200064B15C /* Main.storyboard */; };
 		C0EDB6A924FCCD260064B15C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6A824FCCD260064B15C /* Assets.xcassets */; };
 		C0EDB6AC24FCCD260064B15C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6AA24FCCD260064B15C /* LaunchScreen.storyboard */; };
+		C0EDB6BA24FCD1450064B15C /* NavigatorType+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6B724FCD1450064B15C /* NavigatorType+App.swift */; };
+		C0EDB6BB24FCD1450064B15C /* Router+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6B824FCD1450064B15C /* Router+Custom.swift */; };
+		C0EDB6BC24FCD1450064B15C /* NavigatorMap+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6B924FCD1450064B15C /* NavigatorMap+Custom.swift */; };
+		C0EDB6C724FCD16A0064B15C /* NavigatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6C024FCD16A0064B15C /* NavigatorType.swift */; };
+		C0EDB6C824FCD16A0064B15C /* RouterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6C124FCD16A0064B15C /* RouterParser.swift */; };
+		C0EDB6CB24FCD16A0064B15C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6C424FCD16A0064B15C /* Router.swift */; };
+		C0EDB6CC24FCD16A0064B15C /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6C524FCD16A0064B15C /* Dictionary+Extension.swift */; };
+		C0EDB6D424FCD4900064B15C /* Router.stencil in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6D024FCD4900064B15C /* Router.stencil */; };
+		C0EDB6D524FCD4900064B15C /* AutoBuildParameters.stencil in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6D124FCD4900064B15C /* AutoBuildParameters.stencil */; };
+		C0EDB6D624FCD4900064B15C /* Navigator.stencil in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6D224FCD4900064B15C /* Navigator.stencil */; };
+		C0EDB6D724FCD4900064B15C /* AutoEquatable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6D324FCD4900064B15C /* AutoEquatable.stencil */; };
+		C0EDB6DC24FCD5160064B15C /* Router.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6D824FCD5160064B15C /* Router.generated.swift */; };
+		C0EDB6DD24FCD5160064B15C /* AutoEquatable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6D924FCD5160064B15C /* AutoEquatable.generated.swift */; };
+		C0EDB6DE24FCD5160064B15C /* Navigator.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6DA24FCD5160064B15C /* Navigator.generated.swift */; };
+		C0EDB6DF24FCD5160064B15C /* AutoBuildParameters.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6DB24FCD5160064B15C /* AutoBuildParameters.generated.swift */; };
+		C0EDB6E324FCE7540064B15C /* THNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6E224FCE7540064B15C /* THNavigator.swift */; };
+		C0EDB6E724FCF1090064B15C /* TagProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6E624FCF1090064B15C /* TagProtocol.swift */; };
+		C0EDB6EC24FD32750064B15C /* NavigatorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6EB24FD32750064B15C /* NavigatorMap.swift */; };
+		C0EDB6EE24FD35770064B15C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6ED24FD35770064B15C /* UserModel.swift */; };
+		C0EDB6F124FE37040064B15C /* String+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6F024FE37040064B15C /* String+Mapper.swift */; };
+		C0EDB6F324FE432A0064B15C /* SingleParamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6F224FE432A0064B15C /* SingleParamViewController.swift */; };
+		C0EDB6F524FE43350064B15C /* ModelParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6F424FE43350064B15C /* ModelParamsViewController.swift */; };
+		C0EDB6F724FE44490064B15C /* UseInitMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6F624FE44490064B15C /* UseInitMethodViewController.swift */; };
+		C0EDB6F924FE45920064B15C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6F824FE45920064B15C /* BaseViewController.swift */; };
+		C0EDB6FB24FE52120064B15C /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = C0EDB6FA24FE52120064B15C /* test.png */; };
+		C0EDB6FD24FE57630064B15C /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6FC24FE57620064B15C /* LoginAPI.swift */; };
+		C0EDB6FF24FE58540064B15C /* EquatableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EDB6FE24FE58540064B15C /* EquatableModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5701AF0379694C61B6074C3A /* Pods-THRouter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THRouter.debug.xcconfig"; path = "Target Support Files/Pods-THRouter/Pods-THRouter.debug.xcconfig"; sourceTree = "<group>"; };
+		59496FDDBB2FC86C63AF8D5F /* Pods_THRouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_THRouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EDB69C24FCCD200064B15C /* THRouter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THRouter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EDB69F24FCCD200064B15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0EDB6A124FCCD200064B15C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C0EDB6A324FCCD200064B15C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C0EDB6A324FCCD200064B15C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		C0EDB6A624FCCD200064B15C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0EDB6A824FCCD260064B15C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0EDB6AB24FCCD260064B15C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0EDB6AD24FCCD260064B15C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0EDB6B724FCD1450064B15C /* NavigatorType+App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NavigatorType+App.swift"; sourceTree = "<group>"; };
+		C0EDB6B824FCD1450064B15C /* Router+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Custom.swift"; sourceTree = "<group>"; };
+		C0EDB6B924FCD1450064B15C /* NavigatorMap+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NavigatorMap+Custom.swift"; sourceTree = "<group>"; };
+		C0EDB6C024FCD16A0064B15C /* NavigatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigatorType.swift; sourceTree = "<group>"; };
+		C0EDB6C124FCD16A0064B15C /* RouterParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterParser.swift; sourceTree = "<group>"; };
+		C0EDB6C424FCD16A0064B15C /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C0EDB6C524FCD16A0064B15C /* Dictionary+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		C0EDB6D024FCD4900064B15C /* Router.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Router.stencil; sourceTree = "<group>"; };
+		C0EDB6D124FCD4900064B15C /* AutoBuildParameters.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoBuildParameters.stencil; sourceTree = "<group>"; };
+		C0EDB6D224FCD4900064B15C /* Navigator.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Navigator.stencil; sourceTree = "<group>"; };
+		C0EDB6D324FCD4900064B15C /* AutoEquatable.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoEquatable.stencil; sourceTree = "<group>"; };
+		C0EDB6D824FCD5160064B15C /* Router.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.generated.swift; sourceTree = "<group>"; };
+		C0EDB6D924FCD5160064B15C /* AutoEquatable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoEquatable.generated.swift; sourceTree = "<group>"; };
+		C0EDB6DA24FCD5160064B15C /* Navigator.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.generated.swift; sourceTree = "<group>"; };
+		C0EDB6DB24FCD5160064B15C /* AutoBuildParameters.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoBuildParameters.generated.swift; sourceTree = "<group>"; };
+		C0EDB6E224FCE7540064B15C /* THNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THNavigator.swift; sourceTree = "<group>"; };
+		C0EDB6E624FCF1090064B15C /* TagProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagProtocol.swift; sourceTree = "<group>"; };
+		C0EDB6EB24FD32750064B15C /* NavigatorMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigatorMap.swift; sourceTree = "<group>"; };
+		C0EDB6ED24FD35770064B15C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		C0EDB6F024FE37040064B15C /* String+Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Mapper.swift"; sourceTree = "<group>"; };
+		C0EDB6F224FE432A0064B15C /* SingleParamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleParamViewController.swift; sourceTree = "<group>"; };
+		C0EDB6F424FE43350064B15C /* ModelParamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelParamsViewController.swift; sourceTree = "<group>"; };
+		C0EDB6F624FE44490064B15C /* UseInitMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseInitMethodViewController.swift; sourceTree = "<group>"; };
+		C0EDB6F824FE45920064B15C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C0EDB6FA24FE52120064B15C /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		C0EDB6FC24FE57620064B15C /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		C0EDB6FE24FE58540064B15C /* EquatableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableModel.swift; sourceTree = "<group>"; };
+		EE4A1583DF8541D5D0FED2D6 /* Pods-THRouter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-THRouter.release.xcconfig"; path = "Target Support Files/Pods-THRouter/Pods-THRouter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +89,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CC192E48655EEBE806E8636 /* Pods_THRouter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13FF46D8720CE4B8F954B86A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5701AF0379694C61B6074C3A /* Pods-THRouter.debug.xcconfig */,
+				EE4A1583DF8541D5D0FED2D6 /* Pods-THRouter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C0EDB69324FCCD200064B15C = {
 			isa = PBXGroup;
 			children = (
 				C0EDB69E24FCCD200064B15C /* THRouter */,
 				C0EDB69D24FCCD200064B15C /* Products */,
+				13FF46D8720CE4B8F954B86A /* Pods */,
+				D71F609659B4449BC722432D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +128,112 @@
 			children = (
 				C0EDB69F24FCCD200064B15C /* AppDelegate.swift */,
 				C0EDB6A124FCCD200064B15C /* SceneDelegate.swift */,
-				C0EDB6A324FCCD200064B15C /* ViewController.swift */,
+				C0EDB6A324FCCD200064B15C /* MainTableViewController.swift */,
+				C0EDB6CE24FCD2030064B15C /* Classes */,
+				C0EDB6B324FCD1100064B15C /* CommonModule */,
+				C0EDB6B424FCD1170064B15C /* Templates */,
 				C0EDB6A524FCCD200064B15C /* Main.storyboard */,
 				C0EDB6A824FCCD260064B15C /* Assets.xcassets */,
 				C0EDB6AA24FCCD260064B15C /* LaunchScreen.storyboard */,
+				C0EDB6FA24FE52120064B15C /* test.png */,
 				C0EDB6AD24FCCD260064B15C /* Info.plist */,
 			);
 			path = THRouter;
+			sourceTree = "<group>";
+		};
+		C0EDB6B324FCD1100064B15C /* CommonModule */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6E524FCF0BF0064B15C /* TagProtocol */,
+				C0EDB6E424FCF0B30064B15C /* Navigator */,
+			);
+			path = CommonModule;
+			sourceTree = "<group>";
+		};
+		C0EDB6B424FCD1170064B15C /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6B524FCD11F0064B15C /* Inputs */,
+				C0EDB6B624FCD1230064B15C /* Outputs */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		C0EDB6B524FCD11F0064B15C /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6D124FCD4900064B15C /* AutoBuildParameters.stencil */,
+				C0EDB6D324FCD4900064B15C /* AutoEquatable.stencil */,
+				C0EDB6D224FCD4900064B15C /* Navigator.stencil */,
+				C0EDB6D024FCD4900064B15C /* Router.stencil */,
+			);
+			path = Inputs;
+			sourceTree = "<group>";
+		};
+		C0EDB6B624FCD1230064B15C /* Outputs */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6DB24FCD5160064B15C /* AutoBuildParameters.generated.swift */,
+				C0EDB6D924FCD5160064B15C /* AutoEquatable.generated.swift */,
+				C0EDB6DA24FCD5160064B15C /* Navigator.generated.swift */,
+				C0EDB6D824FCD5160064B15C /* Router.generated.swift */,
+			);
+			path = Outputs;
+			sourceTree = "<group>";
+		};
+		C0EDB6CE24FCD2030064B15C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6F824FE45920064B15C /* BaseViewController.swift */,
+				C0EDB6F224FE432A0064B15C /* SingleParamViewController.swift */,
+				C0EDB6F624FE44490064B15C /* UseInitMethodViewController.swift */,
+				C0EDB6F424FE43350064B15C /* ModelParamsViewController.swift */,
+				C0EDB6ED24FD35770064B15C /* UserModel.swift */,
+				C0EDB6FC24FE57620064B15C /* LoginAPI.swift */,
+				C0EDB6FE24FE58540064B15C /* EquatableModel.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C0EDB6E424FCF0B30064B15C /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6E224FCE7540064B15C /* THNavigator.swift */,
+				C0EDB6EF24FE1CFD0064B15C /* Source */,
+			);
+			path = Navigator;
+			sourceTree = "<group>";
+		};
+		C0EDB6E524FCF0BF0064B15C /* TagProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6E624FCF1090064B15C /* TagProtocol.swift */,
+			);
+			path = TagProtocol;
+			sourceTree = "<group>";
+		};
+		C0EDB6EF24FE1CFD0064B15C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C0EDB6EB24FD32750064B15C /* NavigatorMap.swift */,
+				C0EDB6B924FCD1450064B15C /* NavigatorMap+Custom.swift */,
+				C0EDB6B824FCD1450064B15C /* Router+Custom.swift */,
+				C0EDB6C024FCD16A0064B15C /* NavigatorType.swift */,
+				C0EDB6B724FCD1450064B15C /* NavigatorType+App.swift */,
+				C0EDB6C124FCD16A0064B15C /* RouterParser.swift */,
+				C0EDB6C424FCD16A0064B15C /* Router.swift */,
+				C0EDB6C524FCD16A0064B15C /* Dictionary+Extension.swift */,
+				C0EDB6F024FE37040064B15C /* String+Mapper.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D71F609659B4449BC722432D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59496FDDBB2FC86C63AF8D5F /* Pods_THRouter.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +243,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0EDB6B024FCCD260064B15C /* Build configuration list for PBXNativeTarget "THRouter" */;
 			buildPhases = (
+				37670FD810EE37D0D86B43DB /* [CP] Check Pods Manifest.lock */,
+				C0EDB6CF24FCD3000064B15C /* Run Sourcery Script */,
 				C0EDB69824FCCD200064B15C /* Sources */,
 				C0EDB69924FCCD200064B15C /* Frameworks */,
 				C0EDB69A24FCCD200064B15C /* Resources */,
+				B1F82B1E3C0CB8DB5FFBAEB0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,21 +298,108 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0EDB6AC24FCCD260064B15C /* LaunchScreen.storyboard in Resources */,
+				C0EDB6D724FCD4900064B15C /* AutoEquatable.stencil in Resources */,
 				C0EDB6A924FCCD260064B15C /* Assets.xcassets in Resources */,
+				C0EDB6FB24FE52120064B15C /* test.png in Resources */,
+				C0EDB6D624FCD4900064B15C /* Navigator.stencil in Resources */,
 				C0EDB6A724FCCD200064B15C /* Main.storyboard in Resources */,
+				C0EDB6D424FCD4900064B15C /* Router.stencil in Resources */,
+				C0EDB6D524FCD4900064B15C /* AutoBuildParameters.stencil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37670FD810EE37D0D86B43DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-THRouter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1F82B1E3C0CB8DB5FFBAEB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-THRouter/Pods-THRouter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-THRouter/Pods-THRouter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-THRouter/Pods-THRouter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0EDB6CF24FCD3000064B15C /* Run Sourcery Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Sourcery Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n$PODS_ROOT/Sourcery/bin/sourcery\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C0EDB69824FCCD200064B15C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0EDB6A424FCCD200064B15C /* ViewController.swift in Sources */,
+				C0EDB6E724FCF1090064B15C /* TagProtocol.swift in Sources */,
+				C0EDB6DD24FCD5160064B15C /* AutoEquatable.generated.swift in Sources */,
+				C0EDB6F524FE43350064B15C /* ModelParamsViewController.swift in Sources */,
+				C0EDB6CB24FCD16A0064B15C /* Router.swift in Sources */,
+				C0EDB6FD24FE57630064B15C /* LoginAPI.swift in Sources */,
+				C0EDB6DF24FCD5160064B15C /* AutoBuildParameters.generated.swift in Sources */,
+				C0EDB6F924FE45920064B15C /* BaseViewController.swift in Sources */,
+				C0EDB6C724FCD16A0064B15C /* NavigatorType.swift in Sources */,
+				C0EDB6F124FE37040064B15C /* String+Mapper.swift in Sources */,
+				C0EDB6E324FCE7540064B15C /* THNavigator.swift in Sources */,
+				C0EDB6BB24FCD1450064B15C /* Router+Custom.swift in Sources */,
+				C0EDB6F324FE432A0064B15C /* SingleParamViewController.swift in Sources */,
+				C0EDB6A424FCCD200064B15C /* MainTableViewController.swift in Sources */,
+				C0EDB6F724FE44490064B15C /* UseInitMethodViewController.swift in Sources */,
+				C0EDB6C824FCD16A0064B15C /* RouterParser.swift in Sources */,
+				C0EDB6EC24FD32750064B15C /* NavigatorMap.swift in Sources */,
+				C0EDB6BC24FCD1450064B15C /* NavigatorMap+Custom.swift in Sources */,
 				C0EDB6A024FCCD200064B15C /* AppDelegate.swift in Sources */,
+				C0EDB6DC24FCD5160064B15C /* Router.generated.swift in Sources */,
 				C0EDB6A224FCCD200064B15C /* SceneDelegate.swift in Sources */,
+				C0EDB6EE24FD35770064B15C /* UserModel.swift in Sources */,
+				C0EDB6FF24FE58540064B15C /* EquatableModel.swift in Sources */,
+				C0EDB6DE24FCD5160064B15C /* Navigator.generated.swift in Sources */,
+				C0EDB6BA24FCD1450064B15C /* NavigatorType+App.swift in Sources */,
+				C0EDB6CC24FCD16A0064B15C /* Dictionary+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +541,7 @@
 		};
 		C0EDB6B124FCCD260064B15C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5701AF0379694C61B6074C3A /* Pods-THRouter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -293,12 +553,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.oneclass.THRouter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		C0EDB6B224FCCD260064B15C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE4A1583DF8541D5D0FED2D6 /* Pods-THRouter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,7 +571,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.oneclass.THRouter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

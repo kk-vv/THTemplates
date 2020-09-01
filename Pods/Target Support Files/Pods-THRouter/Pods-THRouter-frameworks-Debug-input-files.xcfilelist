@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-THRouter/Pods-THRouter-frameworks.sh
+${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework
+${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework
+${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework

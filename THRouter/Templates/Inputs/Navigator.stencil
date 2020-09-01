@@ -1,0 +1,47 @@
+//  Router.stencil.swift
+{# (a, b) #}
+{% macro switchCase variables %}{% if variables|annotated:"parameter" %}({% for param in variables|annotated:"parameter" %}{{ param.name }}{% if not forloop.last %}, {% endif %}{% endfor %}){% endif %}{% endmacro %}
+{# (a: a, b: b) #}
+{% macro initCase variables %}{% if variables|annotated:"parameter" %}({% for param in variables|annotated:"parameter" %}{{ param.name }}: {{ param.name }}{% if not forloop.last %}, {% endif %}{% endfor %}){% else %}(){% endif %}{% endmacro %}
+{# viewController.a = a #}
+{% macro setControllerParameter variables %}
+            {% for param in variables|annotated:"parameter" %}
+            {% if param.typeName|hasSuffix:"?" %}
+            if {{ param.name }} != nil {
+                viewController.{{ param.name }} = {{ param.name }}
+            }
+            {% else %}
+            viewController.{{ param.name }} = {{ param.name }}
+            {% endif %}
+            {% endfor %}
+{% endmacro %}
+
+import URLNavigator
+
+// swiftlint:disable all
+extension NavigatorMap {
+
+    func registerGenerated(navigator: NavigatorType) {
+{% for type in types.implementing.Routable %}
+    {% if type.annotations.router and not type.implements.CustomRoutable %}
+        navigator.register(.{{ type.annotations.router }}) { _, _, context in
+            {% if type.variables|annotated:"parameter" %}
+            guard let router = context as? Router,
+                case let .{{ type.annotations.router }}{% call switchCase type.variables %} = router.parameter else {
+                return nil
+            }
+            {% endif %}
+            {% if type.implements.InitRoutable %}
+            let viewController = {{ type.name }}{% call initCase type.variables %}
+            {% else %}
+            let viewController = {{ type.name }}()
+            {% call setControllerParameter type.variables %}
+            {% endif %}
+            viewController.hidesBottomBarWhenPushed = true
+            return viewController
+        }   
+    {% endif %}
+{% endfor %}
+    }
+
+}
